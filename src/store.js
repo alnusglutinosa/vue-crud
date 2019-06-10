@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 // localStorage persistence
-var STORAGE_KEY = 'test-vue-5';
+var STORAGE_KEY = 'vue-crud-ls';
 var userLocalStorage = {
   fetch: function() {
     var usersLocal = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -14,7 +14,7 @@ var userLocalStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(usersLocal));
   },
 };
-var usersLocal = userLocalStorage.fetch();
+
 
 export default new Vuex.Store({
   state: {

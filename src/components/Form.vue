@@ -1,7 +1,7 @@
 <template>
   <div class="form-section">
     <div class="container">
-      <h2>{{ this.$route.params.Pid === "0" ? 'Add user' : `Edit user ${this.$route.params.Pid}` }}</h2>
+      <h2>{{ this.$route.params.Pid === '0' ? 'Add user' : `Edit user ${this.$route.params.Pid}` }}</h2>
 
       <form class="form" id="form" @submit.prevent="onSignup">
         <div class="form-group">
@@ -86,7 +86,7 @@
           type="submit"
           :disabled="!formIsValid"
           class="btn btn-success"
-        >{{ this.$route.params.Pid === "0" ? 'Add user' : 'Edit user' }}</button>
+        >{{ this.$route.params.Pid === '0' ? 'Add user' : 'Edit user' }}</button>
       </form>
 
       <br>
@@ -174,7 +174,7 @@ export default {
   },
   methods: {
     onSignup(event) {
-      if (this.$route.params.Pid === "0") {
+      if (this.$route.params.Pid === '0') {
         this.addUser();
       } else {
         this.editUser();
@@ -233,10 +233,10 @@ export default {
       };
     },
     getUserFromParams() {
-      if (this.$route.params.Pid !== "0") {
+      if (this.$route.params.Pid !== '0') {
         const results = this.$store.getters.results;
         const currentUser = results.filter(
-          item => item.id == this.$route.params.Pid
+          item => item.id === Number(this.$route.params.Pid)
         );
 
         if (currentUser.length && currentUser[0].id) {
@@ -252,7 +252,7 @@ export default {
           this.$router.push({ name: "home" });
         }
       }
-    },
+    }
   },
   created() {
     this.getUserFromParams();
@@ -260,19 +260,19 @@ export default {
   watch: {
     $route(to, from) {
       // обрабатываем изменение параметров маршрута...
-      if (this.$route.params.Pid == "0") {
+      if (this.$route.params.Pid === '0') {
         this.user = {
           id: null,
           name: null,
           surname: null,
           phone: null,
-          email: null
+          email: null,
         };
       } else {
         this.getUserFromParams();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
